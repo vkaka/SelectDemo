@@ -1,6 +1,8 @@
 package com.example.kotlindemo
 
+import android.content.Context
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +29,8 @@ class SelectActivity : AppCompatActivity() {
 
         selectView = select_view
         selectView.layoutManager = GridLayoutManager(this, 3)
+        //https://www.jianshu.com/p/9777e1f4846b
+        selectView.addItemDecoration(SpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.list_space)))
         selectView.adapter = SelectAdapter(this, dataList)
     }
 }
