@@ -1,5 +1,6 @@
 package com.example.kotlindemo
 
+import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -7,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Created by zhangce on 2020/9/15
  */
-class SpaceItemDecoration(space: Int) : RecyclerView.ItemDecoration() {
-    var mSpace = space
+class SpaceItemDecoration(context : Context, space: Int) : RecyclerView.ItemDecoration() {
+    val mSpace = space
+    val mContext = context
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -16,22 +18,25 @@ class SpaceItemDecoration(space: Int) : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        when {
-            parent.getChildAdapterPosition(view) % 3 == 0 -> {
-                outRect.left = 0
-            }
-            parent.getChildAdapterPosition(view) % 3 == 1 -> {
-                outRect.left = mSpace
-            }
-            else -> {
-                outRect.left = mSpace * 2
-            }
-        }
+        outRect.left = mContext.resources.getDimensionPixelOffset(R.dimen.list_space)/2
+        outRect.right = mContext.resources.getDimensionPixelOffset(R.dimen.list_space)/2
+//        when {
+//            parent.getChildAdapterPosition(view) % 3 == 0 -> {
+//                outRect.left = mContext.resources.getDimensionPixelOffset(R.dimen.list_space)/2
+//
+//            }
+//            parent.getChildAdapterPosition(view) % 3 == 1 -> {
+//                outRect.left = mSpace
+//            }
+//            else -> {
+//                outRect.left = mSpace
+//            }
+//        }
 
-        if (parent.getChildAdapterPosition(view) > 3) {
-            outRect.top = 0
+        if (parent.getChildAdapterPosition(view) >= 3) {
+            outRect.top = mContext.resources.getDimensionPixelOffset(R.dimen.list_space)
         } else {
-            outRect.top = mSpace
+            outRect.top = 0
         }
     }
 }

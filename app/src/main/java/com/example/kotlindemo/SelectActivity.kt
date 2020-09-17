@@ -30,7 +30,12 @@ class SelectActivity : AppCompatActivity() {
         selectView = select_view
         selectView.layoutManager = GridLayoutManager(this, 3)
         //https://www.jianshu.com/p/9777e1f4846b
-        selectView.addItemDecoration(SpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.list_space)))
+        selectView.addItemDecoration(
+            SpaceItemDecoration(
+                this,
+                resources.getDimensionPixelOffset(R.dimen.list_space)
+            )
+        )
         selectView.adapter = SelectAdapter(this, dataList)
     }
 }

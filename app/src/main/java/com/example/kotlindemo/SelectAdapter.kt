@@ -1,6 +1,7 @@
 package com.example.kotlindemo
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -34,9 +35,11 @@ class SelectAdapter(context: Context, list: ArrayList<DataBean>) :
         val width = systemService.defaultDisplay.width
         val height = systemService.defaultDisplay.height
         var itemWidth = Math.min(width, height)
-        itemWidth = (itemWidth - mContext.resources.getDimensionPixelOffset(R.dimen.list_space)) / 3
+        itemWidth =
+            (itemWidth - (mContext.resources.getDimensionPixelOffset(R.dimen.list_space) * 3)) / 3
         val layoutParams = RecyclerView.LayoutParams(itemWidth, itemWidth)
-        holder.itemCard.layoutParams = layoutParams
+        Log.e("zhangce", "itemwidth:" + itemWidth)
+        holder.itemView.layoutParams = layoutParams
         holder.itemStr.text = mList[position].name
         holder.itemStr.setOnClickListener { v ->
             Toast.makeText(mContext, "条目：" + position, Toast.LENGTH_SHORT).show()
