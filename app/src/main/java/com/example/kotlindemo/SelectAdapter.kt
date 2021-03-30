@@ -31,15 +31,6 @@ class SelectAdapter(context: Context, list: ArrayList<DataBean>) :
     }
 
     override fun onBindViewHolder(holder: SelectHolder, position: Int) {
-        val systemService = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val width = systemService.defaultDisplay.width
-        val height = systemService.defaultDisplay.height
-        var itemWidth = Math.min(width, height)
-        itemWidth =
-            (itemWidth - (mContext.resources.getDimensionPixelOffset(R.dimen.list_space) * 3)) / 3
-        val layoutParams = RecyclerView.LayoutParams(itemWidth, itemWidth)
-        Log.e("zhangce", "itemwidth:" + itemWidth)
-        holder.itemView.layoutParams = layoutParams
         holder.itemStr.text = mList[position].name
         holder.itemStr.setOnClickListener { v ->
             Toast.makeText(mContext, "条目：" + position, Toast.LENGTH_SHORT).show()
