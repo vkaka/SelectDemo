@@ -21,7 +21,7 @@ class SelectAdapter(context: Context, list: ArrayList<DataBean>) :
     private var mList = list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectHolder {
         var holder: SelectHolder
-        val inflate = View.inflate(mContext, R.layout.item_select, null)
+        val inflate = View.inflate(mContext, R.layout.view_shake, null)
         holder = SelectHolder(inflate)
         return holder
     }
@@ -31,14 +31,14 @@ class SelectAdapter(context: Context, list: ArrayList<DataBean>) :
     }
 
     override fun onBindViewHolder(holder: SelectHolder, position: Int) {
-        holder.itemStr.text = mList[position].name
-        holder.itemStr.setOnClickListener { v ->
+        holder.item.setTitle(mList[position].name)
+        holder.item.setOnClickListener { v ->
             Toast.makeText(mContext, "条目：" + position, Toast.LENGTH_SHORT).show()
         }
     }
 
     class SelectHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var itemCard = itemView.findViewById<CardView>(R.id.item_card)
-        var itemStr = itemView.findViewById<TextView>(R.id.item_name)
+        var item: ShakeView = itemView as ShakeView
+//        var itemStr = itemView.findViewById<TextView>(R.id.item_name)
     }
 }
